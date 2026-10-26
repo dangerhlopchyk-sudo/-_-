@@ -1,0 +1,38 @@
+{
+  "name": "subscriptions-cms",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Payload CMS 3.0 + Next.js + Neon PostgreSQL — бекенд системи обліку цифрових підписок",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "^3.50.0",
+    "@payloadcms/next": "^3.50.0",
+    "@payloadcms/richtext-lexical": "^3.50.0",
+    "@payloadcms/translations": "^3.50.0",
+    "@payloadcms/ui": "^3.50.0",
+    "graphql": "^16.8.1",
+    "next": "^15.4.4",
+    "payload": "^3.50.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sharp": "^0.34.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "cross-env": "^7.0.3",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
