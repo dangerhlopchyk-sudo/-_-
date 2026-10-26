@@ -1,0 +1,15 @@
+{
+  "name": "subscriptions-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Система обліку та моніторингу активних цифрових підписок (Payload CMS + Neon + Vite + TypeScript)",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install && npm --prefix cms install",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:cms": "npm --prefix cms run dev",
+    "typecheck": "npm --prefix frontend run typecheck && npm --prefix cms run typecheck",
+    "build:frontend": "npm --prefix frontend run build",
+    "subs-demo": "echo Запустіть у двох терміналах: npm run dev:backend  та  npm run dev:frontend"
+  }
+}
