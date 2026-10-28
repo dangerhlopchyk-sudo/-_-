@@ -1,8 +1,8 @@
-import type { Access, CollectionConfig } from 'payload'
+import type { Access, CollectionConfig, PayloadRequest } from 'payload'
 
 export const roleOf = (user: unknown): string | undefined => (user as { role?: string } | null | undefined)?.role
 
-const isAdmin: Access = ({ req }) => roleOf(req.user) === 'admin'
+const isAdmin = ({ req }: { req: PayloadRequest }): boolean => roleOf(req.user) === 'admin'
 
 const selfOrAdmin: Access = ({ req }) => {
   if (!req.user) return false
