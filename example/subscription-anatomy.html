@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Анатомія підписки — Керування Підписками</title>
+<style>
+  :root { --bg:#f6f4ef; --surface:#fff; --ink:#1d2a2a; --muted:#5f6f6f; --line:#e2ddd2; --accent:#0f766e; --hl:#fde68a; font-family: system-ui, sans-serif; color: var(--ink); background: var(--bg); }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 1.5rem 1rem 3rem; }
+  main { width: min(100%, 64rem); margin: 0 auto; }
+  h1 { margin: 0 0 .25rem; font-size: clamp(1.4rem, 4vw, 2rem); }
+  .muted { color: var(--muted); }
+  .grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); margin-top: 1.5rem; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 1rem; padding: 1.25rem; }
+  .panel h2 { margin: 0 0 1rem; font-size: 1.1rem; }
+  .card { display: grid; gap: .6rem; border-left: .35rem solid #ea580c; background: #fff4ec; border-radius: 1rem; padding: 1rem 1.25rem; border-top: 1px solid var(--line); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .part { all: unset; box-sizing: border-box; display: block; cursor: pointer; padding: .25rem .5rem; margin: -.25rem -.5rem; border-radius: .5rem; border: 2px dashed transparent; }
+  .part:hover, .part:focus-visible { border-color: var(--accent); }
+  .part.active { background: var(--hl); border-color: var(--accent); }
+  .name { font-size: 1.15rem; font-weight: 700; }
+  .price { font-size: 1.5rem; font-weight: 700; }
+  .due { background: #ea580c; color: #fff; }
+  .row { display: flex; gap: .5rem; flex-wrap: wrap; }
+  dl { margin: 0; display: grid; gap: .5rem; }
+  dt { font-weight: 700; }
+  dd { margin: 0; color: var(--muted); }
+  code { background: rgb(0 0 0 / .06); padding: .1rem .35rem; border-radius: .3rem; }
+  ol { margin: 0; padding-left: 1.2rem; display: grid; gap: .5rem; }
+  ol li { cursor: pointer; padding: .2rem .4rem; border-radius: .4rem; }
+  ol li.active { background: var(--hl); }
+  #info { min-height: 8rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; margin-top: .5rem; }
+  td, th { text-align: left; padding: .35rem .5rem; border-bottom: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Анатомія картки підписки</h1>
+  <p class="muted">Натискайте на частини картки або кроки життєвого циклу, щоб побачити, звідки беруться дані: поле CMS, тип у <code>types.ts</code>, ендпоінт API.</p>
+
+  <div class="grid">
+    <section class="panel">
+      <h2>Картка на фронтенді</h2>
+      <article class="card">
+        <div class="row" style="justify-content: space-between">
+          <button class="part name" data-key="name">Netflix</button>
+          <button class="part" data-key="category">Стрімінг</button>
+        </div>
+        <button class="part price" data-key="cost">299,00 ₴ / місяць</button>
+        <button class="part due" data-key="due"><strong>Через 3 дні</strong> · 28 жовтня 2026 р.</button>
+        <button class="part" data-key="monthlyUah">≈ 299,00 ₴ на місяць</button>
+        <button class="part" data-key="period">Щомісяця</button>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>Що це за поле</h2>
+      <div id="info" class="muted">Оберіть частину картки зліва.</div>
+    </section>
+
+    <section class="panel">
+      <h2>Життєвий цикл запиту</h2>
+      <ol id="steps">
+        <li data-step="1">Користувач відкриває сайт, <code>main.ts</code> бере токен із localStorage.</li>
+        <li data-step="2"><code>GET /api/auth/me</code> перевіряє токен; при 401 показується форма входу.</li>
+        <li data-step="3"><code>GET /api/my/subscriptions</code> і <code>/api/my/summary</code> виконуються паралельно (<code>Promise.all</code>).</li>
+        <li data-step="4">API бере з Neon лише підписки власника, зсуває минулі дати на наступний період і додає <code>daysLeft</code>, <code>monthlyUah</code>.</li>
+        <li data-step="5"><code>renderBlocks.ts</code> за полем <code>type</code> обирає шаблон і вставляє HTML у <code>#app</code>.</li>
+      </ol>
+      <p id="step-info" class="muted"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Кольори нагадування</h2>
+      <table>
+        <tr><th>Днів до списання</th><th>Рівень</th><th>Колір</th></tr>
+        <tr><td>0–1</td><td><code>critical</code></td><td style="color:#dc2626">червоний</td></tr>
+        <tr><td>2–3</td><td><code>warning</code></td><td style="color:#ea580c">помаранчевий</td></tr>
+        <tr><td>4–7</td><td><code>notice</code></td><td style="color:#a16207">жовтий</td></tr>
+        <tr><td>8 і більше</td><td><code>calm</code></td><td style="color:#16a34a">зелений</td></tr>
+      </table>
+    </section>
+  </div>
+</main>
+
+<script>
+  const fields = {
+    name: ['Назва сервісу', 'text, обовʼязкове, до 80 символів', '<code>name: string</code> у <code>SubscriptionInput</code>', 'Поле <code>name</code> колекції <code>subscriptions</code>'],
+    category: ['Категорія', 'select зі строгого списку: Стрімінг, Хмара, Додатки, Музика, Ігри, Інше', '<code>Category</code> — enum (Ai, Streaming, Music…)', 'Поле <code>category</code> (Select, є «ШІ») — довільний текст ввести не можна'],
+    cost: ['Вартість і валюта', 'number ≥ 0 та select UAH / USD / EUR', '<code>cost: number</code>, <code>currency: Currency</code>', 'Поля <code>cost</code> і <code>currency</code>'],
+    period: ['Періодичність', 'select: щотижня, щомісяця, раз на квартал, щороку', '<code>BillingPeriod</code> — Union Type', 'Поле <code>period</code>; від нього залежить розрахунок вартості на місяць'],
+    due: ['Дата наступного списання', 'date; після списання автоматично зсувається на наступний період', '<code>nextBillingDate: IsoDate</code>, <code>daysLeft: number</code> (обчислює API)', 'Поле <code>nextBillingDate</code>; колір блоку залежить від <code>urgencyOf(daysLeft)</code>'],
+    monthlyUah: ['Вартість на місяць у гривні', 'не зберігається в БД, обчислюється в API за курсом НБУ', '<code>monthlyUah: number</code> у <code>Subscription = SubscriptionInput & {…}</code>', 'Обчислюється в <code>decorate()</code> (cms/src/lib/billing.ts)']
+  };
+  const steps = {
+    1: 'Токен зберігається під ключем <code>subscriptions_token</code> і відправляється в заголовку <code>Authorization: JWT …</code>.',
+    2: 'У CMS токен перевіряє Payload (<code>req.user</code>), у демо-бекенді — HMAC-підпис.',
+    3: 'Запити типізовані: <code>getJson&lt;T&gt;</code> повертає <code>Promise&lt;T&gt;</code>.',
+    4: 'Користувач бачить лише свої записи: <code>where: { owner: { equals: user.id } }</code>.',
+    5: 'Стани UI: <code>loading</code> → <code>ready</code> або <code>error</code> (try…catch навколо fetch).'
+  };
+  const info = document.querySelector('#info');
+  const parts = document.querySelectorAll('.part');
+  parts.forEach(p => p.addEventListener('click', () => {
+    parts.forEach(x => x.classList.toggle('active', x === p));
+    const [title, kind, ts, cms] = fields[p.dataset.key];
+    info.innerHTML = `<dl><dt>${title}</dt><dd>${kind}</dd><dt>Тип (TypeScript)</dt><dd>${ts}</dd><dt>CMS / API</dt><dd>${cms}</dd></dl>`;
+  }));
+  const items = document.querySelectorAll('#steps li');
+  items.forEach(li => li.addEventListener('click', () => {
+    items.forEach(x => x.classList.toggle('active', x === li));
+    document.querySelector('#step-info').innerHTML = steps[li.dataset.step];
+  }));
+</script>
+</body>
+</html>
