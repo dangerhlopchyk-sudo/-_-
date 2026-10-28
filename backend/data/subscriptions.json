@@ -1,1 +1,122 @@
-[]
+[
+  {
+    "id": "s_demo_1",
+    "ownerId": "u_demo",
+    "name": "Netflix",
+    "cost": 299,
+    "currency": "UAH",
+    "category": "streaming",
+    "period": "monthly",
+    "nextBillingDate": "2026-10-27"
+  },
+  {
+    "id": "s_demo_2",
+    "ownerId": "u_demo",
+    "name": "Spotify",
+    "cost": 99,
+    "currency": "UAH",
+    "category": "music",
+    "period": "monthly",
+    "nextBillingDate": "2026-10-29"
+  },
+  {
+    "id": "s_demo_3",
+    "ownerId": "u_demo",
+    "name": "iCloud 200 GB",
+    "cost": 99,
+    "currency": "UAH",
+    "category": "cloud",
+    "period": "monthly",
+    "nextBillingDate": "2026-11-01"
+  },
+  {
+    "id": "s_demo_4",
+    "ownerId": "u_demo",
+    "name": "YouTube Premium",
+    "cost": 129,
+    "currency": "UAH",
+    "category": "streaming",
+    "period": "monthly",
+    "nextBillingDate": "2026-11-07"
+  },
+  {
+    "id": "s_demo_5",
+    "ownerId": "u_demo",
+    "name": "ChatGPT Plus",
+    "cost": 20,
+    "currency": "USD",
+    "category": "ai",
+    "period": "monthly",
+    "nextBillingDate": "2026-11-20"
+  },
+  {
+    "id": "s_demo_6",
+    "ownerId": "u_demo",
+    "name": "Xbox Game Pass",
+    "cost": 11.99,
+    "currency": "EUR",
+    "category": "games",
+    "period": "monthly",
+    "nextBillingDate": "2026-12-05"
+  },
+  {
+    "id": "s_3c22e56e-2b83-4423-bc46-95d3cb29bf6c",
+    "ownerId": "u_b07283ec-9aca-4c3c-99b1-a7f4cd70bea1",
+    "name": "Apple Music",
+    "cost": 123,
+    "currency": "UAH",
+    "category": "music",
+    "period": "monthly",
+    "nextBillingDate": "2026-10-27"
+  },
+  {
+    "id": "s_cef70887-abaf-448b-8bc4-df637938ce95",
+    "ownerId": "u_b07283ec-9aca-4c3c-99b1-a7f4cd70bea1",
+    "name": "Spotify",
+    "cost": 400,
+    "currency": "UAH",
+    "category": "music",
+    "period": "monthly",
+    "nextBillingDate": "2026-10-27"
+  },
+  {
+    "id": "s_8a76b9b6-3c0f-4121-a837-86d521c984b5",
+    "ownerId": "u_b07283ec-9aca-4c3c-99b1-a7f4cd70bea1",
+    "name": "YouTube Premium",
+    "cost": 200,
+    "currency": "UAH",
+    "category": "streaming",
+    "period": "monthly",
+    "nextBillingDate": "2026-10-27"
+  },
+  {
+    "id": "s_61acb0af-e612-4e10-a6d8-9608936f688a",
+    "ownerId": "u_b07283ec-9aca-4c3c-99b1-a7f4cd70bea1",
+    "name": "Duolingo",
+    "cost": 100,
+    "currency": "USD",
+    "category": "apps",
+    "period": "yearly",
+    "nextBillingDate": "2026-11-06"
+  },
+  {
+    "id": "s_05597428-ef45-498c-9dfe-3df75b8190c7",
+    "ownerId": "u_b07283ec-9aca-4c3c-99b1-a7f4cd70bea1",
+    "name": "Telegram Premium",
+    "cost": 555,
+    "currency": "UAH",
+    "category": "apps",
+    "period": "monthly",
+    "nextBillingDate": "2026-10-31"
+  },
+  {
+    "id": "s_3b8fd6a9-97bb-4172-99ea-248256f9c6e0",
+    "ownerId": "u_b8597f38-1b50-4b9a-8e82-aa58f3f4bd55",
+    "name": "Netflix",
+    "cost": 12,
+    "currency": "USD",
+    "category": "streaming",
+    "period": "monthly",
+    "nextBillingDate": "2026-10-29"
+  }
+]

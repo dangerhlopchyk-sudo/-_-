@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": "u_demo",
+    "name": "Демо користувач",
+    "email": "demo@example.com",
+    "salt": "4cfeb237a7f02c657ccbd3d2a14cd1ad",
+    "hash": "fa77f9214fcb847ae47a5b511e512847ce9bee17c96735e7ace9a0758ce3ff5f"
+  },
+  {
+    "id": "u_b07283ec-9aca-4c3c-99b1-a7f4cd70bea1",
+    "name": "wqeqweq",
+    "email": "dgfsdifi@gmail.com",
+    "salt": "fd88bbff9300c57bc9e09e31519bcd00",
+    "hash": "26453469b6f24beb6c94bc9fb9e5777ea3c8b237ad007003ad7f142b0b658747"
+  },
+  {
+    "id": "u_b8597f38-1b50-4b9a-8e82-aa58f3f4bd55",
+    "name": "фвраі",
+    "email": "dfhjg@gmail.com",
+    "salt": "2c4a96fe1215e86e670aac0e3d62d427",
+    "hash": "76660fd6aba20c15a9334be15be5ddd78a305f513d48c05f734c1499ef6d1baa"
+  }
+]
